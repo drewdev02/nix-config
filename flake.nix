@@ -37,7 +37,16 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#Andrews-MacBook
     darwinConfigurations."Andrews-MacBook" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+      modules = [
+        configuration
+        ./homebrew.nix
+        ./user.nix
+        ./terminal.nix
+        ./network.nix
+        ./git.nix
+        ./development.nix
+        ./system.nix
+      ];
     };
   };
 }
