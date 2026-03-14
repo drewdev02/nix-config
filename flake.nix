@@ -48,6 +48,9 @@
       # Set primary user for Homebrew and other user-specific options
       system.primaryUser = "Andrew";
 
+      # Dock configuration
+      system.defaults.dock.autohide = false;
+
       # Define user for Home Manager
       users.users.Andrew = {
         home = "/Users/Andrew";
