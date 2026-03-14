@@ -15,21 +15,24 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
-        [ pkgs.vim
+        [ 
+          pkgs.vim
+          pkgs.git
         ];
 
       # Homebrew integration
       homebrew.enable = true;
       homebrew.brews = [
-        # Add brew packages here, e.g.:
-        # "git"
-        # "node"
           "fnm"
           "uv"
+          "mas"
       ];
       homebrew.casks = [
         "zed"
       ];
+      homebrew.masApps = {
+        "Bitwarden" = 1352778147;
+      };
       homebrew.onActivation = {
         cleanup = "none";
       };
@@ -51,6 +54,34 @@
         home.packages = [
           # Add user-specific packages here
         ];
+
+        # Git configuration
+        programs.git = {
+          enable = true;
+          userName = "Andrey Rodriguez";
+          userEmail = "andrey.rgz.2016@gmail.com";
+          
+          extraConfig = {
+            core = {
+              autocrlf = "input";
+              excludesfile = "/Users/Andrew/.gitignore_global";
+              filemode = true;
+              ignorecase = true;
+              precomposeunicode = true;
+            };
+            http.sslverify = false;
+            gpg = {
+              format = "openpgp";
+              program = "gpg";
+            };
+            commit = {
+              gpgsign = false;
+              template = "/Users/Andrew/.stCommitMsg";
+            };
+            tag.forcesignannotated = false;
+            credential.helper = "osxkeychain";
+          };
+        };
       };
 
       # Enable alternative shell support in nix-darwin.
