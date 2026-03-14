@@ -6,27 +6,22 @@ This directory contains the [nix-darwin](https://github.com/nix-darwin/nix-darwi
 
 ```
 /etc/nix-darwin/
-├── flake.nix              # Main flake entry point
-├── system/                # System-level configuration
-│   └── default.nix
-├── users/                 # User definitions
-│   └── default.nix
-├── homebrew/              # Homebrew packages and casks
-│   └── default.nix
-└── home-manager/          # User environment configuration
-    ├── default.nix        # Home Manager entry point
-    └── Andrew/            # Per-user configurations
-        └── default.nix
+├── flake.nix           # Main flake entry point
+├── system.nix          # System-level configuration
+├── users.nix           # User definitions
+├── homebrew.nix        # Homebrew packages and casks
+└── home-manager.nix    # User environment configuration
 ```
 
 ### Modules
 
-| Module | Description |
-|--------|-------------|
-| `system/` | Nix settings, system packages, dock, platform |
-| `users/` | User account definitions |
-| `homebrew/` | Homebrew taps, brews, casks, MAS apps |
-| `home-manager/` | User-specific config (git, zsh, packages) |
+| File | Description |
+|------|-------------|
+| `flake.nix` | Main flake with inputs and darwinSystem definition |
+| `system.nix` | Nix settings, system packages, dock, platform |
+| `users.nix` | User account definitions |
+| `homebrew.nix` | Homebrew taps, brews, casks, MAS apps |
+| `home-manager.nix` | User-specific config (git, zsh, packages) |
 
 ## Setup
 
@@ -75,11 +70,18 @@ darwin-rebuild switch --flake /etc/nix-darwin
 darwin-rebuild build --flake /etc/nix-darwin
 ```
 
-### Add new user configuration
+### Working with untracked files
 
-1. Create directory: `home-manager/<username>/default.nix`
-2. Add configuration following the pattern in `home-manager/Andrew/`
-3. Import in `home-manager/default.nix`
+Nix flakes only access files tracked by git. When modifying configuration files:
+
+```bash
+# Option 1: Stage files (no commit required)
+git add -A
+darwin-rebuild switch --flake /etc/nix-darwin --impure
+
+# Option 2: Use path: reference for local testing
+darwin-rebuild switch --flake path:/etc/nix-darwin#Andrews-MacBook --impure
+```
 
 ## Resources
 
