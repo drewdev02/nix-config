@@ -24,10 +24,11 @@
         # Add brew packages here, e.g.:
         # "git"
         # "node"
+          "fnm"
+          "uv"
       ];
       homebrew.casks = [
         "zed"
-        "iterm2"
       ];
       homebrew.onActivation = {
         cleanup = "none";
