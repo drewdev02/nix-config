@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, pkgs-unstable, ... }:
+let
+  ollama = pkgs-unstable.ollama;
+in
+{
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
 
@@ -11,14 +15,19 @@
   # Dock configuration
   system.defaults.dock.autohide = false;
 
+  # Nixpkgs configuration
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+
   # System packages (stable from 25.05, ollama from unstable)
-  environment.systemPackages = with pkgs; [
-    git
-    nix-du
-    tmux
-    tree
-    curl
-    inputs.nixpkgs-unstable.legacyPackages.aarch64-darwin.ollama
+  environment.systemPackages = [
+    pkgs.git
+    pkgs.nix-du
+    pkgs.tmux
+    pkgs.tree
+    pkgs.curl
+    ollama
   ];
 
   # Ollama service - runs locally hosted LLMs
@@ -27,7 +36,7 @@
     serviceConfig = {
       Label = "org.nixos.ollama";
       ProgramArguments = [
-        "${inputs.nixpkgs-unstable.legacyPackages.aarch64-darwin.ollama}/bin/ollama"
+        "${ollama}/bin/ollama"
         "serve"
       ];
       KeepAlive = true;
@@ -39,6 +48,9 @@
       StandardErrorPath = "/tmp/ollama.error.log";
     };
   };
+
+  # Enable zsh at system level
+  programs.zsh.enable = true;
 
   # Used for backwards compatibility
   system.stateVersion = 6;

@@ -6,22 +6,46 @@ This directory contains the [nix-darwin](https://github.com/nix-darwin/nix-darwi
 
 ```
 /etc/nix-darwin/
-├── flake.nix           # Main flake entry point
-├── system.nix          # System-level configuration
-├── users.nix           # User definitions
-├── homebrew.nix        # Homebrew packages and casks
-└── home-manager.nix    # User environment configuration
+├── flake.nix              # Main flake entry point
+├── flake.lock             # Lock file for dependencies
+├── system.nix             # System-level configuration
+├── users.nix              # User definitions
+├── homebrew.nix           # Homebrew packages and casks
+├── home-manager-module.nix # Home Manager module setup
+└── home/                  # User-specific configuration
+    ├── default.nix        # Entry point for user config
+    ├── git.nix            # Git configuration
+    ├── zsh.nix            # Zsh shell configuration
+    └── packages.nix       # User packages
 ```
 
 ### Modules
 
 | File | Description |
 |------|-------------|
-| `flake.nix` | Main flake with inputs and darwinSystem definition |
-| `system.nix` | Nix settings, system packages, dock, platform |
+| `flake.nix` | Main flake with inputs and darwinSystem definition. Defines `pkgs-unstable` once and passes it to all modules |
+| `system.nix` | Nix settings, system packages, dock, platform, ollama service |
 | `users.nix` | User account definitions |
 | `homebrew.nix` | Homebrew taps, brews, casks, MAS apps |
-| `home-manager.nix` | User-specific config (git, zsh, packages) |
+| `home-manager-module.nix` | Home Manager module setup with `extraSpecialArgs` |
+| `home/default.nix` | Entry point for user configuration |
+| `home/git.nix` | Git configuration with managed gitignore and commit template |
+| `home/zsh.nix` | Zsh aliases and init scripts |
+| `home/packages.nix` | User-specific packages |
+
+## Design Decisions
+
+### Explicit Package References
+This configuration avoids `with pkgs;` to make dependencies explicit and easier to track.
+
+### Single Definition of Unstable Packages
+`pkgs-unstable` is defined once in `flake.nix` and passed via `specialArgs` to all modules, avoiding repetition and potential inconsistencies.
+
+### Modular Home Manager Configuration
+User configuration is split into focused modules (git, zsh, packages) for better maintainability.
+
+### Managed Configuration Files
+Git ignore and commit templates are managed by Nix and written to the Nix store, eliminating external file dependencies.
 
 ## Setup
 

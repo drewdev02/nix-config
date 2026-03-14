@@ -12,17 +12,19 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nixpkgs-unstable }:
   let
+    system = "aarch64-darwin";
+    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     systemRevision = self.rev or self.dirtyRev or null;
   in
   {
     darwinConfigurations."Andrews-MacBook" = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs pkgs-unstable; };
       modules = [
-        (import ./system.nix)
-        (import ./users.nix)
-        (import ./homebrew.nix)
-        (import ./home-manager.nix)
+        ./system.nix
+        ./users.nix
+        ./homebrew.nix
         inputs.home-manager.darwinModules.home-manager
+        ./home-manager-module.nix
         {
           system.configurationRevision = systemRevision;
         }
