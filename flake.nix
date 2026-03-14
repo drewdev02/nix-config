@@ -5,9 +5,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -25,6 +27,7 @@
       ];
       homebrew.casks = [
         "zed"
+        "iterm2"
       ];
       homebrew.onActivation = {
         cleanup = "none";
@@ -35,6 +38,19 @@
 
       # Set primary user for Homebrew and other user-specific options
       system.primaryUser = "Andrew";
+
+      # Define user for Home Manager
+      users.users.Andrew = {
+        home = "/Users/Andrew";
+      };
+
+      # Home Manager - user configuration
+      home-manager.users.Andrew = { pkgs, ... }: {
+        home.stateVersion = "25.05";
+        home.packages = [
+          # Add user-specific packages here
+        ];
+      };
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
@@ -54,7 +70,10 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#Andrews-MacBook
     darwinConfigurations."Andrews-MacBook" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+      modules = [
+        configuration
+        inputs.home-manager.darwinModules.home-manager
+      ];
     };
   };
 }
