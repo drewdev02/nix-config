@@ -13,6 +13,9 @@
     vim
     git
     nix-du
+    tmux
+    tree
+    curl
   ];
 
   # Used for backwards compatibility
