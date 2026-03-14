@@ -23,14 +23,14 @@
 
       # Homebrew integration
       homebrew.enable = true;
-      homebrew.tap = [
-        "SDKMAN/tap"
+      homebrew.taps = [
+        "sdkman/tap"
       ];
       homebrew.brews = [
           "fnm"
           "uv"
           "mas"
-          "SDKMAN/tap/SDKMAN-cli"
+          "sdkman/tap/sdkman-cli"
       ];
       homebrew.casks = [
         "zed"
@@ -94,6 +94,12 @@
           shellAliases = {
             ll = "ls -a";
           };
+          initExtra = ''
+            # SDKMAN initialization
+            if [ -f "$HOME/.sdkman/bin/sdkman-init.sh" ]; then
+              source "$HOME/.sdkman/bin/sdkman-init.sh"
+            fi
+          '';
         };
       };
 
