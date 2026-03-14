@@ -31,9 +31,11 @@
           "uv"
           "mas"
           "sdkman/tap/sdkman-cli"
+          "qwen-code"
       ];
       homebrew.casks = [
         "zed"
+        "claude-code"
       ];
       homebrew.masApps = {
         "Bitwarden" = 1352778147;
