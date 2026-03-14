@@ -10,6 +10,14 @@
     "mas"
     "sdkman/tap/sdkman-cli"
     "qwen-code"
+    "watchman"
+    "cntlm"
+    "opencode"
+    "scrcpy"
+    "gh"
+    "cloudflared"
+    "cocoapods"
+    "neovim"
   ];
   homebrew.casks = [
     #"zed"

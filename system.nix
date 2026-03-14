@@ -5,12 +5,14 @@
   # Set primary user
   system.primaryUser = "Andrew";
 
+  # Touch ID for sudo
+  security.pam.services.sudo_local.touchIdAuth = true;
+
   # Dock configuration
   system.defaults.dock.autohide = false;
 
   # System packages
   environment.systemPackages = with pkgs; [
-    vim
     git
     nix-du
     tmux

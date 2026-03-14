@@ -40,6 +40,8 @@
       enable = true;
       shellAliases = {
         ll = "ls -a";
+        vim = "nvim";
+        v = "nvim";
       };
       initExtra = ''
         # SDKMAN initialization
