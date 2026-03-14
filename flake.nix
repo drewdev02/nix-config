@@ -16,8 +16,22 @@
         [ pkgs.vim
         ];
 
+      # Homebrew integration
+      homebrew.enable = true;
+      homebrew.brews = [
+        # Add brew packages here, e.g.:
+        # "git"
+        # "node"
+      ];
+      homebrew.casks = [
+        "zed"
+      ];
+
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
+
+      # Set primary user for Homebrew and other user-specific options
+      system.primaryUser = "Andrew";
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
