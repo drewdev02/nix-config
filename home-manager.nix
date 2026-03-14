@@ -42,6 +42,7 @@
         ll = "ls -a";
         vim = "nvim";
         v = "nvim";
+        cla = "ollama launch claude --model kimi-k2.5:cloud";
       };
       initExtra = ''
         # SDKMAN initialization
