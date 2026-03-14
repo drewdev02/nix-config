@@ -36,6 +36,7 @@
       homebrew.casks = [
         "zed"
         "claude-code"
+        "tower"
       ];
       homebrew.masApps = {
         "Bitwarden" = 1352778147;
