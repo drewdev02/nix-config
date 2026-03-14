@@ -18,14 +18,19 @@
         [ 
           pkgs.vim
           pkgs.git
+          pkgs.nix-du
         ];
 
       # Homebrew integration
       homebrew.enable = true;
+      homebrew.tap = [
+        "SDKMAN/tap"
+      ];
       homebrew.brews = [
           "fnm"
           "uv"
           "mas"
+          "SDKMAN/tap/SDKMAN-cli"
       ];
       homebrew.casks = [
         "zed"
@@ -60,7 +65,7 @@
           enable = true;
           userName = "Andrey Rodriguez";
           userEmail = "andrey.rgz.2016@gmail.com";
-          
+
           extraConfig = {
             core = {
               autocrlf = "input";
@@ -80,6 +85,14 @@
             };
             tag.forcesignannotated = false;
             credential.helper = "osxkeychain";
+          };
+        };
+
+        # Shell configuration
+        programs.zsh = {
+          enable = true;
+          shellAliases = {
+            ll = "ls -a";
           };
         };
       };
