@@ -2,6 +2,32 @@
 
 This directory contains the [nix-darwin](https://github.com/nix-darwin/nix-darwin) configuration for managing macOS system configuration with Nix.
 
+## Structure
+
+```
+/etc/nix-darwin/
+├── flake.nix              # Main flake entry point
+├── system/                # System-level configuration
+│   └── default.nix
+├── users/                 # User definitions
+│   └── default.nix
+├── homebrew/              # Homebrew packages and casks
+│   └── default.nix
+└── home-manager/          # User environment configuration
+    ├── default.nix        # Home Manager entry point
+    └── Andrew/            # Per-user configurations
+        └── default.nix
+```
+
+### Modules
+
+| Module | Description |
+|--------|-------------|
+| `system/` | Nix settings, system packages, dock, platform |
+| `users/` | User account definitions |
+| `homebrew/` | Homebrew taps, brews, casks, MAS apps |
+| `home-manager/` | User-specific config (git, zsh, packages) |
+
 ## Setup
 
 ```bash
@@ -49,19 +75,15 @@ darwin-rebuild switch --flake /etc/nix-darwin
 darwin-rebuild build --flake /etc/nix-darwin
 ```
 
-### Check available configurations
+### Add new user configuration
 
-```bash
-darwin-rebuild --help
-```
-
-## Structure
-
-- `flake.nix` - Main Nix flake configuration defining the system
-- `flake.lock` - Locked dependencies for reproducible builds
+1. Create directory: `home-manager/<username>/default.nix`
+2. Add configuration following the pattern in `home-manager/Andrew/`
+3. Import in `home-manager/default.nix`
 
 ## Resources
 
 - [nix-darwin GitHub](https://github.com/nix-darwin/nix-darwin)
 - [Nixpkgs Options Search](https://search.nixos.org/options)
 - [Darwin Options](https://github.com/nix-darwin/nix-darwin/blob/master/modules/darwin.nix)
+- [Home Manager Options](https://nix-community.github.io/home-manager/options.html)
