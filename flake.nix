@@ -34,7 +34,7 @@
           "qwen-code"
       ];
       homebrew.casks = [
-        "zed"
+        #"zed"
         "claude-code"
         "tower"
       ];
