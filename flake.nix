@@ -26,6 +26,9 @@
       homebrew.casks = [
         "zed"
       ];
+      homebrew.onActivation = {
+        cleanup = "none";
+      };
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
