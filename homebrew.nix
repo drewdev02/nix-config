@@ -5,9 +5,11 @@
 
   homebrew.taps = [
     "sdkman/tap"
+    "mobile-dev-inc/tap"
   ];
 
   homebrew.brews = [
+    "go"            # Go programming language
     "fnm"           # Fast Node Manager
     "uv"            # Python package manager
     "mas"           # Mac App Store CLI
@@ -21,12 +23,14 @@
     "cloudflared"   # Cloudflare tunnel
     "cocoapods"     # iOS dependency manager
     "neovim"        # Modern Vim
+    "mobile-dev-inc/tap/maestro"  # Mobile UI testing framework
   ];
 
   homebrew.casks = [
     # "zed"        # Zed editor (comentado)
     "claude-code"   # Claude Code CLI
     "tower"         # Git client
+    "openvpn-connect"
   ];
 
   homebrew.masApps = {
