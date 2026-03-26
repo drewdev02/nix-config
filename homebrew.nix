@@ -6,6 +6,7 @@
   homebrew.taps = [
     "sdkman/tap"
     "mobile-dev-inc/tap"
+    "oven-sh/bun"
   ];
 
   homebrew.brews = [
@@ -24,17 +25,21 @@
     "cocoapods"     # iOS dependency manager
     "neovim"        # Modern Vim
     "mobile-dev-inc/tap/maestro"  # Mobile UI testing framework
+    "oven-sh/bun/bun"  # Bun runtime
   ];
 
   homebrew.casks = [
     # "zed"        # Zed editor (comentado)
     "claude-code"   # Claude Code CLI
+    "lens"          # Kubernetes IDE
     "tower"         # Git client
     "openvpn-connect"
+    "jdownloader"   # Download manager
+    "macdown"       # Markdown editor
   ];
 
   homebrew.masApps = {
-    "Bitwarden" = 1352778147;
+   # "Bitwarden" = 1352778147;
   };
 
   homebrew.onActivation = {
