@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   imports = [
+    inputs.nixvim.homeManagerModules.nixvim
     ./git.nix
     ./zsh.nix
     ./packages.nix
+    ./nixvim.nix
   ];
 
   home.stateVersion = "25.05";
