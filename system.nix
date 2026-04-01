@@ -32,7 +32,7 @@ in
 
   # Ollama service - runs locally hosted LLMs
   # Using launchd user agent since services.ollama is not available in nix-darwin
-  launchd.user.agents.ollama = {
+  #launchd.user.agents.ollama = {
    # serviceConfig = {
     #  Label = "org.nixos.ollama";
      # ProgramArguments = [
@@ -47,7 +47,7 @@ in
       #StandardOutPath = "/tmp/ollama.log";
       #StandardErrorPath = "/tmp/ollama.error.log";
     #};
-  };
+  #};
 
   # Enable zsh at system level
   programs.zsh.enable = true;
