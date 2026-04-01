@@ -23,7 +23,7 @@
     "gh"            # GitHub CLI
     "cloudflared"   # Cloudflare tunnel
     "cocoapods"     # iOS dependency manager
-    "neovim"        # Modern Vim
+   # "neovim"        # Modern Vim
     "mobile-dev-inc/tap/maestro"  # Mobile UI testing framework
     "oven-sh/bun/bun"  # Bun runtime
   ];

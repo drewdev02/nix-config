@@ -28,6 +28,12 @@ in
     pkgs.tree
     pkgs.curl
     ollama
+    # LSP servers for nixvim
+    pkgs.nodePackages.typescript-language-server
+    pkgs.nodePackages.eslint
+    pkgs.pyright
+    pkgs.lua-language-server
+    pkgs.nil
   ];
 
   # Ollama service - runs locally hosted LLMs
