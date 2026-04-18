@@ -23,9 +23,11 @@
     "gh"            # GitHub CLI
     "cloudflared"   # Cloudflare tunnel
     "cocoapods"     # iOS dependency manager
-   # "neovim"        # Modern Vim
     "mobile-dev-inc/tap/maestro"  # Mobile UI testing framework
     "oven-sh/bun/bun"  # Bun runtime
+    "sops"          # Secrets management tool
+    "age"           # Age encryption tool
+    "direnv"        # Directory-based environment variable manager
   ];
 
   homebrew.casks = [
@@ -35,7 +37,6 @@
     "tower"         # Git client
     "openvpn-connect"
     "jdownloader"   # Download manager
-    "macdown"       # Markdown editor
   ];
 
   homebrew.masApps = {

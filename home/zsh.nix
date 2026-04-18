@@ -13,6 +13,9 @@
 
       # Claude Code with Ollama
       claudio = "ccr code";
+
+      # Rebuild system configuration with darwin-rebuild
+      dr="sudo darwin-rebuild switch";
     };
 
     initContent = ''
@@ -23,6 +26,7 @@
       fi
 
       export SSH_AUTH_SOCK=/Users/Andrew/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock
+      export SOPS_AGE_KEY_FILE=~/.config/sops/age/keys.txt
     '';
   };
 }
