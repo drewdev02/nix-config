@@ -10,9 +10,11 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim/nixos-25.05";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nixpkgs-unstable, nixvim }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nixpkgs-unstable, nixvim, sops-nix }:
   let
     system = "aarch64-darwin";
     pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
