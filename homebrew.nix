@@ -15,9 +15,7 @@
     "uv"            # Python package manager
     "mas"           # Mac App Store CLI
     "sdkman/tap/sdkman-cli"  # SDK manager for JVM
-    "qwen-code"     # Qwen code assistant
     "watchman"      # File watching service
-    "cntlm"         # NTLM proxy
     "opencode"      # OpenCode CLI
     "scrcpy"        # Android screen mirroring
     "gh"            # GitHub CLI
