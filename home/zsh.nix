@@ -27,6 +27,7 @@
 
       export SSH_AUTH_SOCK=/Users/Andrew/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock
       export SOPS_AGE_KEY_FILE=~/.config/sops/age/keys.txt
+      export PATH=/Users/Andrew/.local/bin:$PATH
     '';
   };
 }
